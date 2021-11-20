@@ -30,9 +30,11 @@
         <a href="#" class="btn btn-primary mb-3">Tambah Club</a>
 
         <ol class="list-group list-group-numbered">
-          @for ($i = 1; $i < 4; $i++) <li class="list-group-item d-flex justify-content-between align-items-start">
+          {{-- @for ($i = 1; $i < 4; $i++)  --}}
+          @foreach ($clubs as $club)
+          <li class="list-group-item d-flex justify-content-between align-items-start">
             <div class="ms-2 me-auto">
-              <div class="fw-bold">Nama Club {{$i}}</div>
+              <div class="fw-bold">{{ $club->nama_club }}</div>
             </div>
             <div>
               <!-- {{-- <a href="{{ route('club.edit', ['club' => $club->id]) }}"
@@ -41,7 +43,8 @@
               <button type="button" class="btn badge bg-danger rounded-pill text-decoration-none">Hapus</button>
             </div>
             </li>
-            @endfor
+            @endforeach
+            {{-- @endfor --}}
 
         </ol>
       </div>

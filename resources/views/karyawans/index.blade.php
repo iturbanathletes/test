@@ -27,7 +27,7 @@
 
     <div class="row">
       <div class="col">
-        <a href="#" class="btn btn-primary mb-3">Tambah Karyawan</a>
+        <a href="/karyawan/create" class="btn btn-primary mb-3">Tambah Karyawan</a>
 
         <table class="table table-striped table-hover">
           <thead>
@@ -41,30 +41,26 @@
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <th scope="row">1</th>
-              <td>Wajar Kriswanto</td>
-              <td>MERR</td>
-              <td>Divisi 2</td>
-              <td>Jabatan 2</td>
-              <td>
-                <a href="#" class="badge bg-black rounded-pill text-decoration-none">Detail</a>
-                <a href="#" class="badge bg-green rounded-pill text-decoration-none">Edit</a>
-                <a href="#" class="badge bg-red rounded-pill text-decoration-none">Delete</a>
-              </td>
-            </tr>
-            <tr>
-              <th scope="row">2</th>
-              <td>Percobaan</td>
-              <td>HO</td>
-              <td>Divisi 1</td>
-              <td>Jabatan 1</td>
-              <td>
-                <a href="#" class="badge bg-black rounded-pill text-decoration-none">Detail</a>
-                <a href="#" class="badge bg-green rounded-pill text-decoration-none">Edit</a>
-                <a href="#" class="badge bg-red rounded-pill text-decoration-none">Delete</a>
-              </td>
-            </tr>
+            @foreach ($karyawans as $karyawan)
+
+              <tr>
+                <th scope="row{">{{ $loop->iteration }}</th>
+                <td>{{ $karyawan->nama_karyawan }}</td>
+                <td>{{ $karyawan->club }}</td>
+                <td>{{ $karyawan->divisi }}</td>
+                <td>{{ $karyawan->jabatan }}</td>
+                <td>
+                  <a href="/karyawan/{{ $karyawan->id }}" class="badge bg-black rounded-pill text-decoration-none">Detail</a>
+                  <a href="/karyawan/{{ $karyawan->id }}/edit" class="badge bg-green rounded-pill text-decoration-none">Edit</a>
+                  {{-- <a href="#" class="badge bg-red rounded-pill text-decoration-none">Delete</a> --}}
+                  <form action="/karyawan/{{ $karyawan->id }}" method="POST" class="d-inline">
+                    @method('delete')
+                    @csrf
+                    <button class="badge bg-red rounded-pill text-decoration-none" onclick="return confirm('Are you sure ?')">Delete</button>
+                  </form>
+                </td>
+              </tr>
+            @endforeach  
           </tbody>
         </table>
 

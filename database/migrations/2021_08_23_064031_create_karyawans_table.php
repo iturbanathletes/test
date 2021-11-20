@@ -17,9 +17,9 @@ class CreateKaryawansTable extends Migration
             $table->id();
             $table->string('nik')->unique();
             $table->string('nama_karyawan');
-            $table->integer('club');
-            $table->integer('divisi');
-            $table->integer('jabatan');
+            $table->foreignId('club');
+            $table->foreignId('divisi');
+            $table->foreignId('jabatan');
             $table->string('jenis_kelamin');
             $table->timestamps();
         });

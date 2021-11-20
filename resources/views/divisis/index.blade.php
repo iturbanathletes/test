@@ -35,9 +35,11 @@
         </button>
 
         <ol class="list-group list-group-numbered mt-3">
-          @for($i = 1; $i < 5; $i++) <li class="list-group-item d-flex justify-content-between align-items-start">
+          {{-- @for($i = 1; $i < 5; $i++)  --}}
+          @foreach ($divisis as $divisi)
+          <li class="list-group-item d-flex justify-content-between align-items-start">
             <div class="ms-2 me-auto">
-              <div class="fw-bold">Nama Divisi 1</div>
+              <div class="fw-bold">{{ $divisi->nama_divisi }}</div>
             </div>
             <div>
               <a href="#" class="badge bg-black rounded-pill text-decoration-none" data-bs-toggle="modal"
@@ -45,7 +47,8 @@
               <button type="button" class="btn badge bg-danger rounded-pill text-decoration-none">Hapus</button>
             </div>
             </li>
-            @endfor
+           @endforeach 
+            {{-- @endfor --}}
         </ol>
       </div>
     </div>
