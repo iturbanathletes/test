@@ -35,20 +35,28 @@
         </button>
 
         <ol class="list-group list-group-numbered mt-3">
-          @for($i = 0; $i < 5; $i++) <li class="list-group-item d-flex justify-content-between align-items-start">
+          {{-- @for($i = 0; $i < 5; $i++)  --}}
+          @foreach ($jabatans as $jabatan)
+          <li class="list-group-item d-flex justify-content-between align-items-start">
             <div class="ms-2 me-auto">
-              <div class="fw-bold">Nama Jabatan {{$i}}</div>
+              <div class="fw-bold">{{ $jabatan->nama_jabatan }}</div>
             </div>
             <div>
               {{-- <button type="button" class="badge bg-black rounded-pill" data-bs-toggle="modal"
                 data-bs-target="#staticBackdrop">Detail</button> --}}
               <a href="#" class="badge bg-black rounded-pill text-decoration-none" data-bs-toggle="modal"
                 data-bs-target="#staticBackdrop">Detail</a>
-              <button type="submit" class="btn badge bg-danger rounded-pill text-decoration-none"
-                onclick="archiveFunction()">Hapus</button>
+              <form action="/jabatan/{{ $jabatan->id }}" method="POST" class="d-inline">
+                @method('delete')
+                @csrf
+                <button class="badge bg-red rounded-pill text-decoration-none" onclick="return confirm('Are you sure ?')">Delete</button>
+              </form>  
+              {{-- <button type="submit" class="btn badge bg-danger rounded-pill text-decoration-none"
+                onclick="archiveFunction()">Hapus</button> --}}
             </div>
             </li>
-            @endfor
+            @endforeach
+            {{-- @endfor --}}
         </ol>
       </div>
     </div>
